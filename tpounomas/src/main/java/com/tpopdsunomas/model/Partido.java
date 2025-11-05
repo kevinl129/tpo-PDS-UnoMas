@@ -6,6 +6,8 @@ import java.util.List;
 public class Partido {
     private List<IObserverNotificacion> interesados = new ArrayList<>();
 
+    private List<Usuario> participantes = new ArrayList<>(); 
+
     public void agregar(IObserverNotificacion observador) {
         System.out.println("(Agregando observador: " + observador + ")");
         interesados.add(observador);
@@ -18,7 +20,11 @@ public class Partido {
 
     public void notificarObservadores() {
         for (IObserverNotificacion obs : interesados) {
-            obs.actualizar(this);
+            obs.actualizar(this);// aca esta el truco para notificar a los participantes del partido
         }
-}
+        
+    }
+    public List<Usuario> getParticipantes() {
+        return this.participantes;
+    }
 }
