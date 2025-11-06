@@ -1,8 +1,10 @@
-package com.tpopdsunomas.model.observer;
+package com.tpopdsunomas.patterns.observer;
 
 import java.util.List;
 
 import com.tpopdsunomas.model.Partido;
+import com.tpopdsunomas.patterns.adapter.IMail;
+import com.tpopdsunomas.patterns.adapter.JavaMailSender;
 import com.tpopdsunomas.model.Cuenta;
 import com.tpopdsunomas.model.adapter.IMail;
 import com.tpopdsunomas.model.adapter.JavaMailSender;

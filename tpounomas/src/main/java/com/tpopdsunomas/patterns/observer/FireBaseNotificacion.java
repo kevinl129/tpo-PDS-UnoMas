@@ -1,4 +1,4 @@
-package com.tpopdsunomas.model.observer;
+package com.tpopdsunomas.patterns.observer;
 
 import com.tpopdsunomas.model.Partido;
 

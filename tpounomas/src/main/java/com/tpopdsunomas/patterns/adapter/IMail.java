@@ -1,4 +1,4 @@
-package com.tpopdsunomas.model.adapter;
+package com.tpopdsunomas.patterns.adapter;
 
 public interface IMail {
 
