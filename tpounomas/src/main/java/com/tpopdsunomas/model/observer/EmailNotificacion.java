@@ -6,6 +6,7 @@ import com.tpopdsunomas.model.Partido;
 import com.tpopdsunomas.model.Cuenta;
 import com.tpopdsunomas.model.adapter.IMail;
 import com.tpopdsunomas.model.adapter.JavaMailSender;
+import com.tpopdsunomas.util.ConfigLoader;
 
 public class EmailNotificacion implements IObserverNotificacion{
 
@@ -13,10 +14,10 @@ public class EmailNotificacion implements IObserverNotificacion{
 
     public EmailNotificacion() {
 
-        //String user = System.getenv("EMAIL_USER");
-        //String pass = System.getenv("EMAIL_PASS");
-        String user = "alvalenteuade@gmail.com";
-        String pass = "iijf blbr zrdk zgjp";
+        ConfigLoader config = ConfigLoader.getInstance();
+
+        String user = config.getProperty("EMAIL_USER");
+        String pass = config.getProperty("EMAIL_PASS");
 
         this.mailSender = new JavaMailSender(user, pass);
     }
@@ -25,8 +26,8 @@ public class EmailNotificacion implements IObserverNotificacion{
     public void actualizar(Partido partido) {
         List<Cuenta> jugadoresAnotificar = partido.getParticipantes();
 
-        String asunto = "¡Partido " + partido.getId() + " listo!";
-        String mensaje = "¡El partido " + partido.getId() + " ha cambiado de estado!";
+        String asunto = "Partido " + partido.getId() + " listo!";
+        String mensaje = "El partido " + partido.getId() + " ha cambiado a estado: " /*+ partido.getEstado().getNombre()*/;
         
         for (Cuenta jugador : jugadoresAnotificar) {
             System.out.println("Enviando email a: " + jugador.getNombre());
