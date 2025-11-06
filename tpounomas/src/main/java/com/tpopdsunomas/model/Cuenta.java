@@ -8,13 +8,13 @@ public class Cuenta{
     private String nombre;
     private String email;
     private String clave;
-    //private INivelJugador nivel;
+    private INivelJugador nivel;
     //private List<Deporte> deportes;
     //private List<Ubicacion> ubicaciones;
     private List<Partido> partidosCreados;
     private List<Partido> partidosInscritos;
     
-    public Cuenta(int id, String nombre, String email, String clave) {
+    public Cuenta(int id, String nombre, String email, String clave, int nivel) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -71,7 +71,7 @@ public class Cuenta{
     public void setClave(String clave) {
         this.clave = clave;
     }
-    /* 
+
     public INivelJugador getNivel() {
         return nivel;
     }
@@ -79,6 +79,9 @@ public class Cuenta{
     public void setNivel(INivelJugador nivel) {
         this.nivel = nivel;
     }
+
+    /* 
+
     
     public List<Deporte> getDeportes() {
         return deportes;
