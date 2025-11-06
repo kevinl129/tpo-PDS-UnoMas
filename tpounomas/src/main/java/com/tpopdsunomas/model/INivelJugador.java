@@ -1,7 +1,9 @@
 package com.tpopdsunomas.model;
 
 public interface INivelJugador {
-     String getNombre();
+    public void sumarPuntos(int puntos, Cuenta jugador);
+    public void restarPuntos(int puntos, Cuenta jugador);
+    public int getNivel();
+    String getNombre();
      int getValor();
-
 }

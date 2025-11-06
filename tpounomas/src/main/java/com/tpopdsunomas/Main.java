@@ -10,6 +10,8 @@ import com.tpopdsunomas.model.Partido;
 import com.tpopdsunomas.patterns.observer.EmailNotificacion;
 import com.tpopdsunomas.patterns.state.*;
 import com.tpopdsunomas.model.*;
+import com.tpopdsunomas.model.strategy.EmparejamientoPorNivel;
+
 
 
 
@@ -43,7 +45,7 @@ public class Main {
         emailService.enviarCorreo("alejandromvalente@gmail.com", "test", "test");
  */
          /*Test Mail */
-
+/*
          System.out.println("--- Iniciando prueba de notificación por email ---");
 
         //observador
@@ -79,6 +81,10 @@ public class Main {
 
         System.out.println("\n--- Prueba finalizada ---");
         System.out.println("Revisa tu bandeja de entrada en: " + usuarioPrueba.getEmail());
+
+         */
+        EmparejamientoPorNivel emparejamientoPorNivel = new EmparejamientoPorNivel();
+        emparejamientoPorNivel.Emparejar(null);
     }
         
     
