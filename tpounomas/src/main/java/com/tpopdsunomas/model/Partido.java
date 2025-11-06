@@ -25,6 +25,12 @@ public class Partido {
     private List<IObserverNotificacion> interesados = new ArrayList<>();
     private List<Cuenta> jugadores = new ArrayList<>(); 
 
+    public Partido(){
+        this.estado = new NecesitaJugadores();
+        this.jugadores = new ArrayList<>();
+        this.observers = new ArrayList<>();
+    }
+
 public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion ubicacion, 
                    String duracion, boolean cuentaConCancha, Cuenta dueno, LocalDateTime fechaHora,
                    INivelJugador nivelRequerido) {
@@ -57,12 +63,12 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         interesados.remove(observador);
     }
 
-  //  public void notificarObservadores() {
-    //    for (IObserverNotificacion obs : interesados) {
-      //      obs.actualizar(this);// aca esta el truco para notificar a los participantes del partido
-       // }
+    public void notificarObservadores() {
+        for (IObserverNotificacion obs : interesados) {
+            obs.actualizar(this);// aca esta el truco para notificar a los participantes del partido
+       }
         
-    //}
+    }
     public List<Cuenta> getParticipantes() {
         return this.jugadores;
     }
@@ -107,11 +113,6 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         observers.remove(observer);
     }
     
-    public void notificarObservadores() {
-        for (IObserverNotificacion observer : observers) {
-          //  observer.notificar(this);
-        }
-    }
     
    // public void agregarEstadistica(Estadistica estadistica) {
      //   estadisticas.add(estadistica);
