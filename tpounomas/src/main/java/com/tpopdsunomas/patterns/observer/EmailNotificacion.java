@@ -1,11 +1,11 @@
-package com.tpopdsunomas.model.observer;
+package com.tpopdsunomas.patterns.observer;
 
 import java.util.List;
 
 import com.tpopdsunomas.model.Partido;
+import com.tpopdsunomas.patterns.adapter.IMail;
+import com.tpopdsunomas.patterns.adapter.JavaMailSender;
 import com.tpopdsunomas.model.Cuenta;
-import com.tpopdsunomas.model.adapter.IMail;
-import com.tpopdsunomas.model.adapter.JavaMailSender;
 
 public class EmailNotificacion implements IObserverNotificacion{
 
@@ -26,7 +26,7 @@ public class EmailNotificacion implements IObserverNotificacion{
         List<Cuenta> jugadoresAnotificar = partido.getParticipantes();
 
         String asunto = "¡Partido " + partido.getId() + " listo!";
-        String mensaje = "¡El partido " + partido.getId() + " ha cambiado de estado!";
+        String mensaje = "¡El partido " + partido.getId() + " ha cambiado de estado! TEESSSSSTTT OBSERVERRRR";
         
         for (Cuenta jugador : jugadoresAnotificar) {
             System.out.println("Enviando email a: " + jugador.getNombre());

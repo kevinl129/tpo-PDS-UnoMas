@@ -1,15 +1,16 @@
 package com.tpopdsunomas.model;
 import java.util.ArrayList;
 import java.util.List;
-import com.tpopdsunomas.model.observer.IObserverNotificacion;
+
+import com.tpopdsunomas.patterns.observer.IObserverNotificacion;
 
 public class Cuenta{
     private int id;
     private String nombre;
     private String email;
     private String clave;
-    //private INivelJugador nivel;
-    //private List<Deporte> deportes;
+    private INivelJugador nivel;
+    private List<Deporte> deportes;
     //private List<Ubicacion> ubicaciones;
     private List<Partido> partidosCreados;
     private List<Partido> partidosInscritos;
@@ -20,16 +21,16 @@ public class Cuenta{
         this.email = email;
         this.clave = clave;
         //this.nivel = Principiante.getInstance();
-        //this.deportes = new ArrayList<>();
+        this.deportes = new ArrayList<>();
         //this.ubicaciones = new ArrayList<>();
         this.partidosCreados = new ArrayList<>();
         this.partidosInscritos = new ArrayList<>();
     }
-    /* 
+    
     public Cuenta(int id, String nombre, String email, String clave, INivelJugador nivel) {
         this(id, nombre, email, clave);
         this.nivel = nivel;
-    }*/
+    }
     
     public void buscarPartido(String ciudad) {
         System.out.println("Buscando partidos en: " + ciudad);
@@ -71,7 +72,7 @@ public class Cuenta{
     public void setClave(String clave) {
         this.clave = clave;
     }
-    /* 
+    
     public INivelJugador getNivel() {
         return nivel;
     }
@@ -89,7 +90,7 @@ public class Cuenta{
             deportes.add(deporte);
         }
     }
-    
+    /* 
     public List<Ubicacion> getUbicaciones() {
         return ubicaciones;
     }
@@ -114,10 +115,10 @@ public class Cuenta{
         partidosInscritos.add(partido);
     }
     
-    //@Override
-    //public String toString() {
-    //    return nombre + " (" + email + ") - Nivel: " + nivel.getNombre();
-    //}
+    @Override
+    public String toString() {
+        return nombre + " (" + email + ") - Nivel: " + nivel.getNombre();
+    }
 
 
     

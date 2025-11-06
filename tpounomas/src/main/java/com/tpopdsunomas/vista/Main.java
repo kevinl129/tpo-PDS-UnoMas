@@ -1,4 +1,4 @@
-package com.tpopdsunomas;
+package com.tpopdsunomas.vista;
 
 import java.util.List;
 
@@ -7,7 +7,13 @@ import com.tpopdsunomas.model.EmailService;
 import com.tpopdsunomas.model.Geolocation;
 import com.tpopdsunomas.model.Localizador;
 import com.tpopdsunomas.model.Partido;
-import com.tpopdsunomas.model.observer.EmailNotificacion;
+import com.tpopdsunomas.patterns.observer.EmailNotificacion;
+import com.tpopdsunomas.patterns.state.*;
+import com.tpopdsunomas.model.*;
+
+
+
+
 
 public class Main {
     public static void main(String[] args) {
@@ -44,8 +50,8 @@ public class Main {
         EmailNotificacion notificadorEmail = new EmailNotificacion();
 
         //cuenta prueba
-        Cuenta usuarioPrueba = new Cuenta(1, "Kevin Tester", "cazonleonel@gmail.com", "123");
-
+        Cuenta usuarioPrueba = new Cuenta(1, "Sofi Tester", "somolinari@uade.edu.com", "123");
+        /* 
         //partido prueba
         Partido partido = new Partido();
         partido.setId(2);
@@ -61,7 +67,7 @@ public class Main {
         System.out.println("Participantes: " + partido.getParticipantes().size());
         System.out.println("Email del participante: " + usuarioPrueba.getEmail());
         System.out.println("---------------------------\n");
-
+        */
 
         // 5. SIMULAR EL EVENTO
         // Esto simula que el partido cambió de estado (ej. "Partido Armado")
@@ -69,7 +75,7 @@ public class Main {
         System.out.println("... Simulando cambio de estado del partido ...");
         System.out.println("... Llamando a partido.notificarObservadores() ...");
         
-        partido.notificarObservadores(); // <-- ¡Aquí ocurre la magia!
+        //partido.notificarObservadores(); // <-- ¡Aquí ocurre la magia!
 
         System.out.println("\n--- Prueba finalizada ---");
         System.out.println("Revisa tu bandeja de entrada en: " + usuarioPrueba.getEmail());
