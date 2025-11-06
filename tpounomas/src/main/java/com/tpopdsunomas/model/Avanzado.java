@@ -29,4 +29,18 @@ public class Avanzado implements INivelJugador {
         return this.nivel;
     }
 
+
+    @Override
+    public String getNombre() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    }
+
+
+    @Override
+    public int getValor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getValor'");
+    }
+
 }

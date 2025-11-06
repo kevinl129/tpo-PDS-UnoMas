@@ -29,10 +29,10 @@ public class Cuenta{
         this.partidosInscritos = new ArrayList<>();
     }
     
-    public Cuenta(int id, String nombre, String email, String clave, INivelJugador nivel) {
+    /*public Cuenta(int id, String nombre, String email, String clave, INivelJugador nivel) {
         this(id, nombre, email, clave);
         this.nivel = nivel;
-    }
+    }*/
     
     public void buscarPartido(String ciudad) {
         System.out.println("Buscando partidos en: " + ciudad);

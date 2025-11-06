@@ -32,5 +32,15 @@ public class Intermedio implements INivelJugador {
     public int getNivel(){
         return this.nivel;
     }
+    @Override
+    public String getNombre() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+    }
+    @Override
+    public int getValor() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getValor'");
+    }
 
 }
