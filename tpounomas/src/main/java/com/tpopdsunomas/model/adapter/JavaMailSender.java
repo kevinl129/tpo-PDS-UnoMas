@@ -1,10 +1,18 @@
 package com.tpopdsunomas.model.adapter;
 
+import com.tpopdsunomas.model.EmailService;
+
 public class JavaMailSender implements IMail{
 
-    @Override
-    public void enviarMail(String correoDestinatario, String mensaje) {
+    private EmailService emailService;
 
+    public JavaMailSender(String username, String password) {
+        this.emailService = new EmailService(username, password);
+    }
+
+    @Override
+    public void enviarMail(String correoDestinatario, String asunto, String mensaje) {
+        this.emailService.enviarCorreo(correoDestinatario, asunto, mensaje);
     }
     
 }
