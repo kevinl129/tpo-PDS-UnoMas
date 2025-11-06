@@ -114,10 +114,10 @@ public class Cuenta{
         partidosInscritos.add(partido);
     }
     
-    //@Override
-    //public String toString() {
-    //    return nombre + " (" + email + ") - Nivel: " + nivel.getNombre();
-    //}
+    @Override
+    public String toString() {
+        return nombre + " (" + email + ") - Nivel: " /*+ nivel.getNombre()*/;
+    }
 
 
     
