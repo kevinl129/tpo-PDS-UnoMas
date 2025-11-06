@@ -6,7 +6,7 @@ import java.util.List;
 public class Partido {
     private List<IObserverNotificacion> interesados = new ArrayList<>();
 
-    private List<Usuario> participantes = new ArrayList<>(); 
+    private List<Cuenta> participantes = new ArrayList<>(); 
 
     public void agregar(IObserverNotificacion observador) {
         System.out.println("(Agregando observador: " + observador + ")");
@@ -24,7 +24,7 @@ public class Partido {
         }
         
     }
-    public List<Usuario> getParticipantes() {
+    public List<Cuenta> getParticipantes() {
         return this.participantes;
     }
 }

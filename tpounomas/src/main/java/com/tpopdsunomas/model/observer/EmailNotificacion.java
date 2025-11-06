@@ -3,16 +3,16 @@ package com.tpopdsunomas.model.observer;
 import java.util.List;
 
 import com.tpopdsunomas.model.Partido;
-import com.tpopdsunomas.model.Usuario;
+import com.tpopdsunomas.model.Cuenta;
 
 public class EmailNotificacion implements IObserverNotificacion{
 
     @Override
     public void actualizar(Partido partido) {
-        List<Usuario> jugadoresAnotificar = partido.getParticipantes();
+        List<Cuenta> jugadoresAnotificar = partido.getParticipantes();
         String mensaje = "test";
 
-        for (Usuario jugador : jugadoresAnotificar) {
+        for (Cuenta jugador : jugadoresAnotificar) {
             System.out.println("Enviando email a: " + jugador.toString());
         }
     }
