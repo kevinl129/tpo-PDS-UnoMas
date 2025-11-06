@@ -6,6 +6,7 @@ public class Avanzado implements INivelJugador {
     
     public Avanzado(int setNivel, Cuenta jugador){
         this.nivel=setNivel;    
+        jugador.setNivel(this);
  
     }
 
@@ -24,7 +25,7 @@ public class Avanzado implements INivelJugador {
     }
 
 
-    public int getNivel(int setNivel){
+    public int getNivel(){
         return this.nivel;
     }
 

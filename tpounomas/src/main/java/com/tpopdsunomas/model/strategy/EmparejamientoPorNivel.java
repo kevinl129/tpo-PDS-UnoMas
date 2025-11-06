@@ -2,6 +2,7 @@ package com.tpopdsunomas.model.strategy;
 
 import com.tpopdsunomas.model.Avanzado;
 import com.tpopdsunomas.model.Cuenta;
+import com.tpopdsunomas.model.INivelJugador;
 import com.tpopdsunomas.model.Partido;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,11 +33,14 @@ public class EmparejamientoPorNivel implements IStrategyEmparejamiento{
         jugadores.add(jugador10);
         jugadores.add(jugador11);
 
+INivelJugador i = jugador11.getNivel();
+String t = i.getClass().getName();
 
         List<Cuenta> jugadoresFiltrados = jugadores.stream()
         .filter(j -> j.getNivel() instanceof Avanzado)
         .collect(Collectors.toList());
 
+ 
         jugadoresFiltrados.forEach(j -> System.out.println(j.getNombre()));
 
     }

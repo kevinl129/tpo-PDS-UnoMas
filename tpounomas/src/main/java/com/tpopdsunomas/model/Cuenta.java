@@ -19,6 +19,8 @@ public class Cuenta{
         this.nombre = nombre;
         this.email = email;
         this.clave = clave;
+        new Principiante(nivel,this);
+        
         //this.nivel = Principiante.getInstance();
         //this.deportes = new ArrayList<>();
         //this.ubicaciones = new ArrayList<>();
@@ -76,8 +78,8 @@ public class Cuenta{
         return nivel;
     }
     
-    public void setNivel(INivelJugador nivel) {
-        this.nivel = nivel;
+    public void setNivel(INivelJugador nivelJugador) {
+        this.nivel = nivelJugador;
     }
 
     /* 

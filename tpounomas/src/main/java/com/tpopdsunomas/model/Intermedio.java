@@ -7,9 +7,9 @@ public class Intermedio implements INivelJugador {
     
     public Intermedio(int setNivel, Cuenta jugador){
         this.nivel=setNivel;
+        jugador.setNivel(this);
         if (this.nivel > max){
-            Intermedio intermedio = new Intermedio(this.nivel,jugador);
-            jugador.setNivel(intermedio);
+            new Avanzado(this.nivel,jugador);            
         }      
 
     }
@@ -29,7 +29,7 @@ public class Intermedio implements INivelJugador {
     }
 
 
-    public int getNivel(int setNivel){
+    public int getNivel(){
         return this.nivel;
     }
 
