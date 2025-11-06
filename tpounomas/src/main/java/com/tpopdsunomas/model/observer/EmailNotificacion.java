@@ -13,8 +13,10 @@ public class EmailNotificacion implements IObserverNotificacion{
 
     public EmailNotificacion() {
 
-        String user = System.getenv("EMAIL_USER");
-        String pass = System.getenv("EMAIL_PASS");
+        //String user = System.getenv("EMAIL_USER");
+        //String pass = System.getenv("EMAIL_PASS");
+        String user = "alvalenteuade@gmail.com";
+        String pass = "iijf blbr zrdk zgjp";
 
         this.mailSender = new JavaMailSender(user, pass);
     }
@@ -27,8 +29,8 @@ public class EmailNotificacion implements IObserverNotificacion{
         String mensaje = "¡El partido " + partido.getId() + " ha cambiado de estado!";
         
         for (Cuenta jugador : jugadoresAnotificar) {
-            System.out.println("Enviando email a: " + jugador.toString());
-            mailSender.enviarMail(jugador.getCorreo(), asunto, mensaje);
+            System.out.println("Enviando email a: " + jugador.getNombre());
+            mailSender.enviarMail(jugador.getEmail(), asunto, mensaje);
         }
     }
     
