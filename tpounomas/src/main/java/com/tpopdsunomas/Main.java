@@ -1,4 +1,4 @@
-package com.tpopdsunomas.vista;
+package com.tpopdsunomas;
 
 import java.util.List;
 
