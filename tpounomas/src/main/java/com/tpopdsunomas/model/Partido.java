@@ -2,6 +2,7 @@ package com.tpopdsunomas.model;
 import com.tpopdsunomas.patterns.observer.*;
 import com.tpopdsunomas.patterns.state.IEstadoPartido;
 import com.tpopdsunomas.patterns.state.NecesitaJugadores;
+import com.tpopdsunomas.patterns.strategyNivel.INivelJugador;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -86,19 +87,29 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         
         agregarJugador(jugador);
     }*/
+
+    public void confirmarPartido() {
+    this.estado.confirmar(this);
+    }
+
+    public void iniciarJuego() {
+        this.estado.iniciarJuego(this);
+    }
+
+    public void finalizarPartido() {
+        this.estado.finalizar(this);
+    }
     
     public void agregarJugador(Cuenta jugador) {
-        if (!jugadores.contains(jugador)) {
-            jugadores.add(jugador);
-            jugador.agregarPartidoInscrito(this);
-            System.out.println("Jugador " + jugador.getNombre() + " agregado al partido");
-            
-            // Verificar si el partido está completo
-            if (isTotalmenteAceptado()) {
-                estado.cambiarEstado(this);
-                notificarObservadores();
-            }
-        }
+        this.estado.agregarJugador(this, jugador);
+    }
+    
+    public void confirmar() {
+        this.estado.confirmar(this);
+    }
+    
+    public void cancelarPartido() {
+        this.estado.cancelar(this);
     }
     
     public boolean isTotalmenteAceptado() {
@@ -117,11 +128,6 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
    // public void agregarEstadistica(Estadistica estadistica) {
      //   estadisticas.add(estadistica);
     //}
-    
-    public void cancelarPartido() {
-        //estado = new state.Cancelado();
-        notificarObservadores();
-    }
     
     // Getters y Setters
     public int getId() {
@@ -188,9 +194,11 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         return estado;
     }
     
-    public void setEstado(IEstadoPartido estado) {
-        this.estado = estado;
-        notificarObservadores();
+    public void setEstado(IEstadoPartido nuevoEstado) {
+        this.estado = nuevoEstado;
+        System.out.println("--- Partido cambió de estado a: " + nuevoEstado.getNombre() + " ---");
+        
+        this.notificarObservadores(); 
     }
     
     //public List<Estadistica> getEstadisticas() {

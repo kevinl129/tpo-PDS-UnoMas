@@ -1,26 +1,43 @@
 package com.tpopdsunomas.patterns.state;
 
+import com.tpopdsunomas.model.Cuenta;
 import com.tpopdsunomas.model.Partido;
 
-public class Cancelado {
-    /* 
+public class Cancelado implements IEstadoPartido{
+    
     @Override
-    public void cambiarEstado(Partido partido) {
-        System.out.println("El partido ha sido cancelado. No se puede cambiar más de estado.");
+    public void agregarJugador(Partido partido, Cuenta jugador) {
+        System.out.println("Este partido fue cancelado.");
     }
-    
-    public void cambiarAEstado(Partido partido) {
-        System.out.println("El partido fue cancelado.");
+
+    /*@Override
+    public void confirmarAsistencia(Partido partido, Cuenta jugador) {
+        System.out.println("Este partido fue cancelado.");
+    }*/
+
+    @Override
+    public void confirmar(Partido partido) {
+        System.out.println("Este partido fue cancelado.");
     }
-    
-    public void cancelar() {
-        System.out.println("Partido cancelado definitivamente.");
+
+    @Override
+    public void cancelar(Partido partido) {
+        System.out.println("Este partido ya está cancelado.");
     }
-    
+
+    @Override
+    public void iniciarJuego(Partido partido) {
+        System.out.println("Este partido fue cancelado.");
+    }
+
+    @Override
+    public void finalizar(Partido partido) {
+        System.out.println("Este partido fue cancelado.");
+    }
+
     @Override
     public String getNombre() {
         return "Cancelado";
     }
-    */
     
 }

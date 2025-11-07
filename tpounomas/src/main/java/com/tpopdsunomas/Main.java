@@ -2,15 +2,13 @@ package com.tpopdsunomas;
 
 import java.util.List;
 
+import com.tpopdsunomas.service.EmailService;
 import com.tpopdsunomas.model.Cuenta;
-import com.tpopdsunomas.model.EmailService;
-import com.tpopdsunomas.model.Geolocation;
 import com.tpopdsunomas.model.Localizador;
 import com.tpopdsunomas.model.Partido;
 import com.tpopdsunomas.patterns.observer.EmailNotificacion;
 import com.tpopdsunomas.patterns.state.*;
-import com.tpopdsunomas.model.*;
-import com.tpopdsunomas.model.strategy.EmparejamientoPorNivel;
+import com.tpopdsunomas.patterns.strategy.EmparejamientoPorNivel;
 
 
 

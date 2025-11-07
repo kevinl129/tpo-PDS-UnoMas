@@ -27,7 +27,7 @@ public class EmailNotificacion implements IObserverNotificacion{
         List<Cuenta> jugadoresAnotificar = partido.getParticipantes();
 
         String asunto = "Partido " + partido.getId() + " listo!";
-        String mensaje = "El partido " + partido.getId() + " ha cambiado a estado: " /*+ partido.getEstado().getNombre()*/;
+        String mensaje = "El partido " + partido.getId() + " ha cambiado a estado: " + partido.getEstado().getNombre();
         
         for (Cuenta jugador : jugadoresAnotificar) {
             System.out.println("Enviando email a: " + jugador.getNombre());

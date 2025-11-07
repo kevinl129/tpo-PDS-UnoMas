@@ -1,6 +1,6 @@
 package com.tpopdsunomas.patterns.adapter;
 
-import com.tpopdsunomas.model.EmailService;
+import com.tpopdsunomas.service.EmailService;
 
 public class JavaMailSender implements IMail{
 

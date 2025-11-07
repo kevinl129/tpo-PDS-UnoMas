@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tpopdsunomas.patterns.observer.IObserverNotificacion;
+import com.tpopdsunomas.patterns.strategyNivel.Principiante;
+import com.tpopdsunomas.patterns.strategyNivel.INivelJugador;
 
 public class Cuenta{
     private int id;
