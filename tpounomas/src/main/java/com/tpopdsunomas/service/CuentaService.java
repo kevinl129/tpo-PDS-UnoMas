@@ -14,9 +14,9 @@ public class CuentaService {
         this.cuentaRepo = cuentaRepo;
     }
 
-    public Cuenta registrarCuenta(String nombre, String email, String clave, int puntosNivel) {
+    public Cuenta registrarCuenta(String nombre, String email, String clave, int puntosNivel,String codigoPostal) {
 
-        Cuenta nuevaCuenta = new Cuenta(0, nombre, email, clave, puntosNivel);
+        Cuenta nuevaCuenta = new Cuenta(0, nombre, email, clave, puntosNivel,codigoPostal);
         cuentaRepo.guardar(nuevaCuenta);
         System.out.println("Servicio: Cuenta registrada -> " + nombre);
         return nuevaCuenta;

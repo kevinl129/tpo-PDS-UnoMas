@@ -128,11 +128,13 @@ public class Main {
         String clave = scanner.nextLine();
         System.out.print("Puntos de Nivel (ej: 0=Principiante, 15=Intermedio, 25=Avanzado): ");
         int puntosNivel = leerOpcion();
+        System.out.print("Codigo Postal: ");
+        String codigoPostal = scanner.nextLine();
         
         // --- AHORA ---
         // El Main solo recolecta datos y llama al servicio.
         try {
-            Cuenta nuevaCuenta = cuentaService.registrarCuenta(nombre, email, clave, puntosNivel);
+            Cuenta nuevaCuenta = cuentaService.registrarCuenta(nombre, email, clave, puntosNivel,codigoPostal);
             System.out.println("\n✓ Usuario registrado exitosamente: " + nuevaCuenta);
             System.out.println("Nivel asignado: " + nuevaCuenta.getNivel().getNombre());
         } catch (Exception e) {
@@ -191,7 +193,7 @@ public class Main {
         if (opNivel == 2) puntos = 15;  // (Intermedio)
         if (opNivel == 3) puntos = 25;  // (Avanzado)
         
-        Cuenta dummy = new Cuenta(0, "dummy", "dummy", "dummy", puntos);
+        Cuenta dummy = new Cuenta(0, "dummy", "dummy", "dummy", puntos,"7167");
         nivelRequerido = dummy.getNivel();
         
         System.out.println("Nivel seleccionado: " + nivelRequerido.getNombre());
@@ -370,7 +372,7 @@ public class Main {
 
         // --- AHORA (Usando servicios) ---
         // 1. Creamos un usuario de prueba
-        Cuenta cuentaPrueba = cuentaService.registrarCuenta("Usuario de Prueba", emailDest, "123", 0);
+        Cuenta cuentaPrueba = cuentaService.registrarCuenta("Usuario de Prueba", emailDest, "123", 0,"7167");
         
         // 2. Creamos un partido de prueba
         Deporte deportePrueba = deporteService.obtenerTodos().get(0); // Tomar el primer deporte
@@ -435,9 +437,9 @@ public class Main {
             deporteService.guardar(new Deporte(2, "Básquet"));
             deporteService.guardar(new Deporte(3, "Tenis"));
 
-            cuentaService.registrarCuenta("Juan Pérez", "juan@test.com", "pass123", 15); // Intermedio
-            cuentaService.registrarCuenta("María García", "maria@test.com", "pass456", 25); // Avanzado
-            cuentaService.registrarCuenta("Luis Rodríguez", "luis@test.com", "pass789", 5);  // Principiante
+            cuentaService.registrarCuenta("Juan Pérez", "juan@test.com", "pass123", 15,"7167"); // Intermedio
+            cuentaService.registrarCuenta("María García", "maria@test.com", "pass456", 25,"7167"); // Avanzado
+            cuentaService.registrarCuenta("Luis Rodríguez", "luis@test.com", "pass789", 5,"7167");  // Principiante
 
             System.out.println("✓ " + deporteService.obtenerTodos().size() + " deportes cargados");
             System.out.println("✓ " + cuentaService.obtenerTodasLasCuentas().size() + " usuarios cargados");

@@ -3,6 +3,7 @@ import com.tpopdsunomas.patterns.observer.*;
 import com.tpopdsunomas.patterns.state.IEstadoPartido;
 import com.tpopdsunomas.patterns.state.NecesitaJugadores;
 import com.tpopdsunomas.patterns.strategyNivel.INivelJugador;
+import com.tpopdsunomas.service.Geolocation;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,7 +14,7 @@ public class Partido {
     private int id;
     private int cantidadJugadores;
     private Deporte tipoDeporte;
-    //private Ubicacion ubicacion;
+    private Ubicacion ubicacion;
     private String duracion; // Por ejemplo: "90 minutos"
     private boolean cuentaConCancha;
     private Cuenta dueno;
@@ -25,6 +26,7 @@ public class Partido {
     //private IEstrategiaEmparejamiento estrategiaEmparejamiento;
     private List<IObserverNotificacion> interesados = new ArrayList<>();
     private List<Cuenta> jugadores = new ArrayList<>(); 
+    private String codigoPostal;
 
     public Partido(){
         this.estado = new NecesitaJugadores();
@@ -32,9 +34,9 @@ public class Partido {
         this.observers = new ArrayList<>();
     }
 
-public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion ubicacion, 
+public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, 
                    String duracion, boolean cuentaConCancha, Cuenta dueno, LocalDateTime fechaHora,
-                   INivelJugador nivelRequerido) {
+                   INivelJugador nivelRequerido,String codigoPostal) {
         this.id = id;
         this.tipoDeporte = tipoDeporte;
         this.cantidadJugadores = cantidadJugadores;
@@ -47,10 +49,20 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         this.jugadores = new ArrayList<>();
         this.observers = new ArrayList<>();
         //this.estadisticas = new ArrayList<>();
-        this.estado = new NecesitaJugadores();
-        
+        this.estado = new NecesitaJugadores();        
         // El dueño se agrega automáticamente como jugador
         this.jugadores.add(dueno);
+        this.codigoPostal=codigoPostal;
+        Ubicacion ubicacion = new Ubicacion();        
+        try {                   
+            double[] coords = Geolocation.geocodeAddress(codigoPostal);
+            ubicacion.setLatitud(coords[0]);
+            ubicacion.setLongitud(coords[1]);
+            this.ubicacion = ubicacion;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
 
@@ -228,6 +240,10 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
     public void setEstrategiaEmparejamiento(IEstrategiaEmparejamiento estrategiaEmparejamiento) {
         this.estrategiaEmparejamiento = estrategiaEmparejamiento;
     }*/
+
+    public Ubicacion getUbicacion(){
+        return this.ubicacion;
+    }
     
     @Override
     public String toString() {

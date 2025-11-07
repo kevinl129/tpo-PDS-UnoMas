@@ -1,9 +1,11 @@
 package com.tpopdsunomas.model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.tpopdsunomas.patterns.observer.IObserverNotificacion;
 import com.tpopdsunomas.patterns.strategyNivel.Principiante;
+import com.tpopdsunomas.service.Geolocation;
 import com.tpopdsunomas.patterns.strategyNivel.INivelJugador;
 
 public class Cuenta{
@@ -13,11 +15,12 @@ public class Cuenta{
     private String clave;
     private INivelJugador nivel;
     private List<Deporte> deportes;
-    //private List<Ubicacion> ubicaciones;
+    private List<Ubicacion> ubicaciones;
     private List<Partido> partidosCreados;
     private List<Partido> partidosInscritos;
+    private String codigoPostal;
     
-    public Cuenta(int id, String nombre, String email, String clave, int nivel) {
+    public Cuenta(int id, String nombre, String email, String clave, int nivel,String codigoPostal) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -29,6 +32,17 @@ public class Cuenta{
         //this.ubicaciones = new ArrayList<>();
         this.partidosCreados = new ArrayList<>();
         this.partidosInscritos = new ArrayList<>();
+        this.codigoPostal=codigoPostal;
+        Ubicacion ubicacion = new Ubicacion();   
+        ubicaciones = new ArrayList<>();     
+        try {                   
+            double[] coords = Geolocation.geocodeAddress(codigoPostal);
+            ubicacion.setLatitud(coords[0]);
+            ubicacion.setLongitud(coords[1]);
+            ubicaciones.add(ubicacion);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     /*public Cuenta(int id, String nombre, String email, String clave, INivelJugador nivel) {
@@ -97,14 +111,15 @@ public class Cuenta{
             deportes.add(deporte);
         }
     }
-    /* 
+    public void agregarUbicacion(Ubicacion ubicacion) {
+        ubicaciones.add(ubicacion);
+    }
+     */
     public List<Ubicacion> getUbicaciones() {
         return ubicaciones;
     }
     
-    public void agregarUbicacion(Ubicacion ubicacion) {
-        ubicaciones.add(ubicacion);
-    }*/
+    
     
     public List<Partido> getPartidosCreados() {
         return partidosCreados;
@@ -127,6 +142,36 @@ public class Cuenta{
         return nombre + " (" + email + ") - Nivel: " + nivel.getNombre();
     }
 
+    public List<Cuenta> listarAmigos(){
+        List<Cuenta> amigos = new ArrayList<>();
+        
+        List<Partido> partidosFinalizados = this.partidosInscritos.stream()
+            .filter(partido -> partido.getEstado().getNombre().equals("Finalizado")).collect(Collectors.toList());
+                 
+        for(Partido partido : partidosFinalizados){
+            List<Cuenta> participantes = partido.getParticipantes();
+            for(Cuenta jugador:participantes){
+                if(!amigos.contains(jugador)){
+                    amigos.add(jugador);
+                }
+            }
+        }
 
+        partidosFinalizados = this.partidosCreados.stream()
+            .filter(partido -> partido.getEstado().getNombre().equals("Finalizado")).collect(Collectors.toList());
+
+        for(Partido partido : partidosFinalizados){
+            List<Cuenta> participantes = partido.getParticipantes();
+            for(Cuenta jugador:participantes){
+                if(!amigos.contains(jugador)){
+                    amigos.add(jugador);
+                }
+            }
+        }
+
+
+        return amigos;
+
+    }
     
 }
