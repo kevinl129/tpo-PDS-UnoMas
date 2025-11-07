@@ -36,8 +36,7 @@ public class Intermedio implements INivelJugador {
     }
     @Override
     public String getNombre() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNombre'");
+        return "Intermedio";
     }
     @Override
     public int getValor() {

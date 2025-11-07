@@ -2,6 +2,7 @@ package com.tpopdsunomas.patterns.repo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.tpopdsunomas.model.Partido;
 
@@ -28,6 +29,13 @@ public class PartidoRepoLocal implements IPartidoRepository{
     public void eliminar(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+    }
+
+    @Override
+    public Optional<Partido> buscarPorId(int id) {
+        return partidosRepo.stream()
+                .filter(p -> p.getId() == id)
+                .findFirst();
     }
     
 }

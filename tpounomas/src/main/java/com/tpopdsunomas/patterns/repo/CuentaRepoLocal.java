@@ -2,6 +2,7 @@ package com.tpopdsunomas.patterns.repo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -36,5 +37,12 @@ public class CuentaRepoLocal implements ICuentaRepository{
     @Override
     public void eliminar(int id) {
         this.cuentasRepo.removeIf(c -> c.getId() == id);
+    }
+
+    @Override
+    public Optional<Cuenta> buscarPorId(int id) {
+        return cuentasRepo.stream()
+                .filter(c -> c.getId() == id)
+                .findFirst();
     }
 }

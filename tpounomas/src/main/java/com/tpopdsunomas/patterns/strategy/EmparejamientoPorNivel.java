@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class EmparejamientoPorNivel implements IStrategyEmparejamiento{
-    public void Emparejar(Partido partido){
+    public void emparejar(Partido partido, List<Partido> todosLosPartidos){
         List<Cuenta> jugadores = new ArrayList<>();
         Cuenta jugador1 = new Cuenta(1, "Jhon", "Jhon@gmail.com", "Clave",0);
         Cuenta jugador2 = new Cuenta(2, "Maria", "Maria@gmail.com", "Clave",0);
@@ -44,5 +44,29 @@ String t = i.getClass().getName();
  
         jugadoresFiltrados.forEach(j -> System.out.println(j.getNombre()));
 
+    }
+
+    @Override
+    public List<Partido> buscar(Cuenta buscador, List<Partido> todosLosPartidos) {
+        
+        System.out.println("Usando Estrategia: Buscando partidos para nivel: " + buscador.getNivel().getNombre());
+        
+        INivelJugador nivelDelBuscador = buscador.getNivel();
+
+        return todosLosPartidos.stream()
+            
+            .filter(partido -> partido.getEstado().getNombre().equals("Necesita Jugadores"))
+            
+            .filter(partido -> {
+                INivelJugador nivelRequerido = partido.getNivelRequerido();
+                
+                if (nivelRequerido == null) {
+                    return true;
+                }
+
+                return nivelRequerido.getNombre().equals(nivelDelBuscador.getNombre());
+            })
+            
+            .collect(Collectors.toList());
     }
 }

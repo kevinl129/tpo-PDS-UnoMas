@@ -43,7 +43,7 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         this.cuentaConCancha = cuentaConCancha;
         this.dueno = dueno;
         this.fechaHora = fechaHora;
-        //this.nivelRequerido = nivelRequerido;
+        this.nivelRequerido = nivelRequerido;
         this.jugadores = new ArrayList<>();
         this.observers = new ArrayList<>();
         //this.estadisticas = new ArrayList<>();
@@ -213,14 +213,14 @@ public Partido(int id, Deporte tipoDeporte, int cantidadJugadores, //Ubicacion u
         this.fechaHora = fechaHora;
     }
     
-    //public INivelJugador getNivelRequerido() {
-      //  return nivelRequerido;
-    //}
-    /* 
+    public INivelJugador getNivelRequerido() {
+        return nivelRequerido;
+    }
+    
     public void setNivelRequerido(INivelJugador nivelRequerido) {
         this.nivelRequerido = nivelRequerido;
     }
-    
+    /* 
     public IEstrategiaEmparejamiento getEstrategiaEmparejamiento() {
         return estrategiaEmparejamiento;
     }
